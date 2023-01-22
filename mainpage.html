@@ -1,13 +1,67 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>3D Ball Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>ChatGPT API Test</title>
+    <style>
+      /* Add some styling for the response box */
+      #response-box {
+        border: solid 1px #ccc;
+        padding: 10px;
+        margin-top: 10px;
+        width: 50%;
+      }
+    </style>
   </head>
   <body>
-    <div id="ball-container">
-        <p>ball rotating</p>
-    </div>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r122/three.min.js"></script>
-    <script src="ball.js"></script>
+    <h1>ChatGPT API Test</h1>
+    <form>
+      <label for="prompt">Enter your request:</label>
+      <input type="text" id="prompt" name="prompt" required>
+      <br>
+      <button type="button" onclick="submitPrompt()">Submit</button>
+      <i class="fas fa-rocket" id="rocket"></i>
+    </form>
+    <br>
+    <div id="response-box"></div>
+    <script>
+
+
+
+    function submitPrompt() {
+    // Get the user's prompt from the input field
+    let prompt = document.getElementById("prompt").value;
+    // Make a request to the OpenAI API
+    fetch('https://api.openai.com/v1/engines/davinci/completions', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer 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',
+            'Organization-Id': 'org-lkPiW5czoulmK1hf8B3ILXP3'
+        },
+        body: JSON.stringify({
+            prompt: prompt,
+            temperature: 0.7
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Get the first response from the API
+        let response = data.choices[0].text;
+
+        // Display the response in the "response" div
+        document.getElementById("response").innerHTML = response;
+
+        // Add the animation for the rocket
+        let rocket = document.getElementById("rocket");
+        rocket.style.animation = "fly-out 1s ease-out";
+    })
+    .catch(error => {
+    document.getElementById("response-box").innerHTML = "Something went wrong with your API key";
+    console.error(error);
+    });
+    }
+    </script>
   </body>
 </html>

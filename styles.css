@@ -1,0 +1,40 @@
+form {
+    display: flex;
+    align-items: center;
+  }
+  
+  #prompt {
+    width: 10%;
+  }
+
+  #response-box {
+    width: 5%;
+    /* other styles */  
+    }
+
+    #rocket {
+        position: relative;
+        left: -30px;
+        top: 10px;
+        font-size: 30px;
+    }
+    
+    .fly-out {
+        animation: fly-out 1s ease-out;
+    }
+    
+    @keyframes fly-out {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(100%);
+        }
+    }
+    
+    
+
+  button[type="submit"] {
+    margin-left: 10px;
+  }
+  
