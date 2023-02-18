@@ -3,12 +3,13 @@ $cache = [System.Collections.Generic.Dictionary[string,string]]::new()
 $prompt = "this is a test"
 $headers = @{
     "Content-Type" = "application/json";
-    "Authorization" = "Bearer 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";
+    "Authorization" = "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";
     "Organization-Id" = "org-lkPiW5czoulmK1hf8B3ILXP3"
 }
 $body = @{
     prompt = $prompt;
-    temperature = 0.7
+    temperature = 0.7;
+    max_tokens=256;
 }
 
 if ($cache.ContainsKey($prompt)) {
